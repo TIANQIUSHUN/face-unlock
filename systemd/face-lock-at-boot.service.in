@@ -1,0 +1,13 @@
+[Unit]
+Description=自动登录后立即锁屏，把人脸作为进桌面的第一道门
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=oneshot
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus
+ExecStart=/bin/sh -c 'sleep "${FACE_LOCK_DELAY:-8}"; exec "__INSTALL_DIR__/src/lock-at-boot.sh"'
+TimeoutStartSec=60
+
+[Install]
+WantedBy=graphical-session.target

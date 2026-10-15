@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# 构建产物：wheel 缓存、暂存树、成品 deb（98MB，应走 Releases 而不是仓库）
+packaging/cache/
+packaging/pkgroot/
+packaging/out/
+
+# ONNX 模型按需下载，不入库（约 39MB，也便于跟随上游更新）
+models/*.onnx
+
+# 运行时与个人数据（正常都在家目录，这里兜底防止误拷进项目）
+faces.npz*
+secret
+enroll_preview.jpg
+config.bak*
+
+# 编辑器与临时文件
+*.swp
+*.tmp

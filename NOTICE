@@ -1,0 +1,30 @@
+face-unlock 使用的第三方组件
+============================
+
+本仓库自身代码以 MIT 许可发布（见 LICENSE）。以下组件不包含在仓库中，
+但由打包脚本或系统包管理器引入，各自遵循其原始许可。
+
+1. OpenCV 的 YuNet / SFace 人脸模型
+   来源: https://github.com/opencv/opencv_zoo
+   许可: Apache License 2.0
+   文件:
+     face_detection_yunet_2023mar.onnx        (YuNet, 人脸检测)
+     face_recognition_sface_2021dec.onnx      (SFace, 人脸特征)
+   说明: 两个模型均不提交进本仓库（共约 39MB），由 packaging/build-deb.sh
+         在构建时从上游下载并校验字节数。重新分发本项目的 .deb 时，请一并
+         保留本文件与 Apache-2.0 许可声明。
+
+2. opencv-python-headless 4.11.0.86
+   来源: https://pypi.org/project/opencv-python-headless/
+   许可: Apache License 2.0
+   说明: 仅在自包含 .deb 中随包分发（wheel 形式），供 postinst 离线安装。
+
+3. NumPy 2.2.6
+   来源: https://pypi.org/project/numpy/
+   许可: BSD 3-Clause License
+   说明: 同上，仅在自包含 .deb 中随包分发。
+
+4. 运行时由 apt 提供的组件
+   xdotool (GPL-3.0)、dbus-x11 (GPL-2.0+)、x11-xserver-utils (MIT/X11)、
+   python3-gi / PyGObject (LGPL-2.1+)、GTK+ 3 (LGPL-2.1+)、
+   policykit-1 (GPL-2.0+)。这些由发行版提供，不随本仓库分发。

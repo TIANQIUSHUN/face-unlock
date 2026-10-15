@@ -1,0 +1,20 @@
+[Unit]
+Description=人脸无感解锁守护进程
+Documentation=file:__INSTALL_DIR__/README.md
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+Type=simple
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus
+Environment=PYTHONUNBUFFERED=1
+ExecStart=__INSTALL_DIR__/.venv/bin/python __INSTALL_DIR__/src/face_unlockd.py
+Restart=on-failure
+RestartSec=3
+Nice=10
+NoNewPrivileges=yes
+PrivateTmp=no
+ProtectSystem=off
+
+[Install]
+WantedBy=graphical-session.target

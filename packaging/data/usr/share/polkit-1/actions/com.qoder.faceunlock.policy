@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC
+ "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+ "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<policyconfig>
+  <vendor>face-unlock</vendor>
+  <vendor_url>https://example.invalid/face-unlock</vendor_url>
+
+  <action id="com.qoder.faceunlock.setautologin">
+    <description>Change GDM automatic-login setting for face unlock</description>
+    <description xml:lang="zh_CN">为人脸识别解锁更改 GDM 自动登录设置</description>
+
+    <message>face-unlock 需要管理员权限修改 /etc/gdm3/custom.conf。只影响自动登录这两行，不会改动 Wayland 设置。</message>
+    <message xml:lang="zh_CN">人脸识别解锁需要管理员权限来修改 /etc/gdm3/custom.conf。改动只限自动登录这两行，不会碰 Wayland 相关设置。</message>
+
+    <defaults>
+      <!-- 只允许当前活跃桌面会话的本地用户认证；远程/其它会话一律拒绝 -->
+      <allow_any>no</allow_any>
+      <allow_inactive>no</allow_inactive>
+      <allow_active>auth_admin_keep</allow_active>
+    </defaults>
+
+    <annotate key="org.freedesktop.policykit.exec.path">/opt/face-unlock/priv/set_autologin.py</annotate>
+    <annotate key="org.freedesktop.policykit.exec.allow_gui">true</annotate>
+  </action>
+</policyconfig>

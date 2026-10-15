@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Face Unlock
+Name[zh_CN]=人脸识别解锁
+Comment=Camera face unlock for the GNOME lock screen
+Comment[zh_CN]=用摄像头为 GNOME 锁屏做无感解锁
+Exec=face-unlock-gui
+Icon=face-unlock
+Terminal=false
+Categories=Settings;Security;
+Keywords=face;unlock;camera;screensaver;
+StartupNotify=true
