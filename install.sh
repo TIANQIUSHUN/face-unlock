@@ -35,7 +35,7 @@ ok "发行版 ${PRETTY_NAME:-未知}"
 case "${XDG_SESSION_TYPE:-}" in
   wayland) die "当前是 Wayland 会话。xdotool 无法向锁屏注入按键，这个方案在 Wayland 上不成立。
       修法：注销 -> 登录界面左下角齿轮选「Ubuntu on Xorg」重新登录，再跑本脚本。
-      （你本机 /etc/gdm3/custom.conf 已写 WaylandEnable=false，正常应该落在 X11）" ;;
+      （有些机器在 /etc/gdm3/custom.conf 里写了 WaylandEnable=false，那就会落在 X11）" ;;
   x11)     ok "会话类型 X11，xdotool 注入可用" ;;
   *)       [ -e /tmp/.X11-unix/X0 ] && ok "无 XDG_SESSION_TYPE 但 X11 socket 在，按 X11 处理" \
                                   || need "确认不了 X11 会话。请在桌面终端里跑，不要在纯 SSH 里跑" ;;
